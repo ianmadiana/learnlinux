@@ -26,9 +26,21 @@ fi
 # copy file
 DIR_CP=/home/ian/workspace/learn/udemy/dir1
 
-cp *.txt $DIR_CP
-
-if [[ "${?}" -eq 0 ]]
+# is dir exists?
+if [[ -d "$DIR_CP" ]]
 then
-	echo "success copy file to ${DIR_CP}."
+	echo "OK: $DIR_CP found"
+else
+	echo "ERROR: $DIR_CP not found. Start creating dir"
+	mkdir -p "$DIR_CP"
+fi
+
+# copy file
+echo "Copy file"
+cp *.txt $DIR_CP/.
+
+if find . -maxdepth 1 -name "*.txt" | grep -q .
+then
+	echo "File berhasil disalin"
+	echo "Jumlah file : $(ls $DIR_CP | wc -l)"
 fi
