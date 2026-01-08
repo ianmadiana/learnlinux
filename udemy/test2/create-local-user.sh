@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# script akan berhenti jika ada command yang gagal (exit status != 0)
+set -e
+
 # make suer the script is being executed with superuser previleges
 if [ ${UID} -eq 0 ]; then
     read -p "Input username : " USERNAME
@@ -8,11 +11,30 @@ if [ ${UID} -eq 0 ]; then
 
     useradd -c "${COMMENT}" -m ${USERNAME}
 
+    if [[ -d /home/$USERNAME ]]
+    then
+	    echo "Reuse home directory for ${USERNAME}"
+	    chown -R "$USERNAME:$USERNAME" "/home/$USERNAME"
+    fi
+
     echo "${USERNAME}:${PASSWORD}" | chpasswd
+    chage -d 0 "$USERNAME"
 
-    echo ""
+    echo
 
-    echo "$(tail -n 1 /etc/passwd)"
+    echo "----- Last entry -----"
+
+    tail -n 1 /etc/passwd
+
+    echo
+
+    echo "----- Account Information -----"
+
+    echo "username : ${USERNAME}"
+
+    echo "password : ${PASSWORD}"
+
+    echo "host : $(hostname)"
 else
      echo "Please run with sudo as root"
      echo "${?}"
