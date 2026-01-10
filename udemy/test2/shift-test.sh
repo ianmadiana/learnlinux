@@ -9,6 +9,6 @@ shift
 
 while [ $# -gt 0 ]
 do
-	echo "kata : $1"
+	echo "kata : $1 - sisa $#"
 	shift
 done
