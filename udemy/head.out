@@ -1,0 +1,5 @@
+==> /etc/passwd <==
+root:x:0:0:root:/root:/bin/bash
+
+==> /etc/hosts <==
+# Your system has configured 'manage_etc_hosts' as True.
