@@ -1,0 +1,11 @@
+rank|company
+1|Google
+2|Amazon
+3|LinkedIn
+4|Microsoft
+5|Ted Conferences
+6|Unilever
+7|Deloitte
+8|LinkedIn News
+9|IBM
+10|Apple
